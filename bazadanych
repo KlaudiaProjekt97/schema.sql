@@ -1,0 +1,34 @@
+ 1.	Tabela Patients
+CREATE TABLE Patients (
+    PatientID INT PRIMARY KEY AUTO_INCREMENT,
+    Nazwisko VARCHAR(50),
+    Imie VARCHAR(50),
+    Wojewodztwo VARCHAR(50),
+    Wiek_Kobiety INT,
+    Wiek_Mezczyzny INT
+);
+
+2.	Tabela Procedures
+CREATE TABLE Procedures (
+    ProcedureID INT PRIMARY KEY AUTO_INCREMENT,
+    PatientID INT,
+    Lekarz_Prowadzacy VARCHAR(50),
+    Typ_Procedury VARCHAR(50),
+    Przygotowanie_Nasienia VARCHAR(50),
+    Ilosc_Transferowanych_Blastocyst INT,
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+);
+
+3.	Tabela TestResults
+CREATE TABLE TestResults (
+    TestID INT PRIMARY KEY AUTO_INCREMENT,
+    ProcedureID INT,
+    Jakosc_Zarodkow VARCHAR(50),
+    Test_Genetyczny VARCHAR(50),
+    Status_Genetyczny_Zarodka CHAR(1),
+    Test_Ciazowy INT,
+    Ciaza_Biochemiczna INT,
+    Urodzenie INT,
+    EmbryoImageURL VARCHAR(255),
+    FOREIGN KEY (ProcedureID) REFERENCES Procedures(ProcedureID)
+);
